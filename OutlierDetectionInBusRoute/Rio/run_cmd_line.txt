@@ -1,0 +1,3 @@
+nohup /opt/caffe/build/tools/caffe train -solver=/workspace/BusGps/caffe/solver.prototxt > /workspace/BusGps/caffe/train.out 2>&1 &
+
+/opt/caffe/build/tools/caffe train -solver=/workspace/BusGps/caffe/solver.prototxt 

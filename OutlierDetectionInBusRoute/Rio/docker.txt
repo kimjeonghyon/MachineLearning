@@ -1,0 +1,13 @@
+docker run --name caffe -v $(pwd):/workspace/BusGps -it bvlc/caffe:cpu bash
+
+docker images
+
+docker ps -a
+
+docker start caffe
+
+docker exec -it  caffe bash
+
+docker stop caffe
+
+docker rm caffe

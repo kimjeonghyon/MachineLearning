@@ -1,0 +1,41 @@
+import sys
+import numpy as np
+import csv
+from datetime import datetime, timedelta
+import dateutil.parser
+import time
+import os
+import operator
+
+#"ROT_NO","ROT_ID","VEHC_ID","LATTD","LONGTD","PASS_DTIME","RUN_DEPART_DTIME","PASS_DIST","STA_ID","STD_ORD"
+
+in_dir = "rawdata/"
+files = [os.path.join(dp, f) for dp, _, filenames in os.walk(in_dir) for f in filenames]
+
+for in_file in files:
+    dic_data = {}
+    lst = open(in_file, 'r')
+    lines = lst.readlines()
+    lines = lines[1:]    
+    lst.close()
+    csv_lines = ["ROT_NO,ROT_ID,VEHC_ID,LATTD,LONGTD,PASS_DTIME,RUN_DEPART_DTIME,PASS_DIST,STA_ID,STD_ORD\n"]
+    for row in lines:
+        r = row.split(",")
+        # key : Line, Bus, Year, Month, DayMonth
+        key = r[0]+'_'+r[2]+'_'+r[5][:4]+'_'+r[5][4:6]+'_'+r[5][6:8]
+        if key not in dic_data:        
+            dic_data[key] = []
+        dic_data[key].append(row)
+  
+    for key in dic_data.keys():
+        for item in dic_data[key]:
+            i = item.split(",")
+            t1 = dateutil.parser.parse(i[5]).timetuple()
+            ts[item] = time.mktime(t1)
+        idx_sorted = sorted(ts.items(), key=operator.itemgetter(1))
+        for idx in idx_sorted:
+            csv_lines.append(idx[0])
+    lst2 = open(in_file + "_sorted", 'w+')
+    for l in csv_lines:
+        lst2.write(l)
+    lst2.close()
