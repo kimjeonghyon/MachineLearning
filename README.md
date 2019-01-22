@@ -35,3 +35,28 @@ aws + caffe, python, pyCaffe
 
 ## 참고 사이트
 https://github.com/rodrigonogueira4/BusData
+
+
+
+# Prediction Hammer Price of Apartment (아파트 낙찰가 예측)
+## 목적
+아파트 경락 자금 대출 시 낙찰가를 예측하여 대출 기준 값으로 사용한다.
+
+## 분석 방법
+R
+
+원본 데이터 : 아파트 입찰 정보, 대법원 등기 정보, 아파트 전입 관련 정보 등
+
+## 데이콘 데이터 분석 경진 대회 출품작 (50위?)
+https://dacon.io/cpt3
+
+
+
+# Prediction Sales Count of Store (가게 매출 예측)
+## 목적
+미래 특정 날짜의 판매량을 매측한다.
+
+## 분석 방법
+R
+
+원본 데이터 : 판매 이력 정보, 경쟁사 판촉 정보, 자사 판촉 정보 등.
