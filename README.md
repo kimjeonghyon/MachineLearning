@@ -1,4 +1,4 @@
-# Taxi Demand Prediction (택시 수요 예측)
+# Taxi Demand Prediction (택시 수요 예측) - 2017년
 ## 목적
 특정 위치의 시간, 날씨에 따른 택시 수요를 예측하는 서비스 제공
 
@@ -26,7 +26,7 @@ http://sdaulton.github.io/TaxiPrediction/
 
 
 
-# Outlier Detection in Bus Route (버스 노선 이상 탐지 )
+# Outlier Detection in Bus Route (버스 노선 이상 탐지 ) - 2018년
 ## 목적
 
 버스가 정시성 있게 운행 되었는 지, 노선 이탈 , 출도착 지연이 없었는 지 이상 운행 패턴 감시
@@ -52,7 +52,7 @@ https://github.com/rodrigonogueira4/BusData
 
 
 
-# Prediction Hammer Price of Apartment (아파트 낙찰가 예측)
+# Prediction Hammer Price of Apartment (아파트 낙찰가 예측) - 2019년
 ## 목적
 아파트 경락 자금 대출 시 낙찰가를 예측하여 대출 기준 값으로 사용한다.
 
@@ -66,7 +66,7 @@ https://dacon.io/cpt3
 
 
 
-# Prediction Sales Count of Store (가게 매출 예측)
+# Prediction Sales Count of Store (가게 매출 예측) - 2019
 ## 목적
 미래 특정 날짜의 판매량을 매측한다.
 
