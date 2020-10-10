@@ -1,28 +1,43 @@
-# Taxi Demand Prediction (택시 수요 예측) - 2017년
+
+# Machine Leaerning Service Deployment - REST API - 2020
 ## 목적
-특정 위치의 시간, 날씨에 따른 택시 수요를 예측하는 서비스 제공
+머신러닝 모델을 REST API로 서비스 한다.
+
+## 시스템 구조
+Python - 개발 언어
+Flask - 웹 개발 프레임워크
+gunicorn - 웹 컨테이너
+
+예시 모델 : 데이콘 퇴근시간 버스승차인원 예측 모델 경진대회 코드 참조
+(https://dacon.io/competitions/official/229255/codeshare/709?page=1&dtype=recent&ptype=pub)
+
+## To Do 
+- R model deploy in Flask
+- docker
+
+# Prediction Sales Count of Store (가게 매출 예측) - 2019
+## 목적
+미래 특정 날짜의 판매량을 매측한다.
 
 ## 분석 방법
-aws + pySpark, python scikit-learn
+R
 
-원본 데이터 : 일자별 택시 탑승 위치 정보 (뉴욕 택시)
+원본 데이터 : 판매 이력 정보, 경쟁사 판촉 정보, 자사 판촉 정보 등.
 
-데이터 가공 :
 
-GPS 정보 그룹핑, 격자화
+# Prediction Hammer Price of Apartment (아파트 낙찰가 예측) - 2019년
+## 목적
+아파트 경락 자금 대출 시 낙찰가를 예측하여 대출 기준 값으로 사용한다.
 
-요일, 시간 정보 정규화
+## 분석 방법
+R
 
-종속변수 : 탑승인원
+원본 데이터 : 아파트 입찰 정보, 대법원 등기 정보, 아파트 전입 관련 정보 등
 
-독립변수 : 요일, 시간, 위치 등.
+## 데이콘 데이터 분석 경진 대회 출품작 (50위?)
+https://dacon.io/cpt3
 
-모델 : 랜덤포레스트회귀, kNN
 
-훈련 및 평가 : 교차검증, R^2 (비율척도 관측치와 예측치의 상관도), RMSE
-
-## 참고 사이트
-http://sdaulton.github.io/TaxiPrediction/
 
 
 
@@ -52,25 +67,30 @@ https://github.com/rodrigonogueira4/BusData
 
 
 
-# Prediction Hammer Price of Apartment (아파트 낙찰가 예측) - 2019년
+
+# Taxi Demand Prediction (택시 수요 예측) - 2017년
 ## 목적
-아파트 경락 자금 대출 시 낙찰가를 예측하여 대출 기준 값으로 사용한다.
+특정 위치의 시간, 날씨에 따른 택시 수요를 예측하는 서비스 제공
 
 ## 분석 방법
-R
+aws + pySpark, python scikit-learn
 
-원본 데이터 : 아파트 입찰 정보, 대법원 등기 정보, 아파트 전입 관련 정보 등
+원본 데이터 : 일자별 택시 탑승 위치 정보 (뉴욕 택시)
 
-## 데이콘 데이터 분석 경진 대회 출품작 (50위?)
-https://dacon.io/cpt3
+데이터 가공 :
 
+GPS 정보 그룹핑, 격자화
 
+요일, 시간 정보 정규화
 
-# Prediction Sales Count of Store (가게 매출 예측) - 2019
-## 목적
-미래 특정 날짜의 판매량을 매측한다.
+종속변수 : 탑승인원
 
-## 분석 방법
-R
+독립변수 : 요일, 시간, 위치 등.
 
-원본 데이터 : 판매 이력 정보, 경쟁사 판촉 정보, 자사 판촉 정보 등.
+모델 : 랜덤포레스트회귀, kNN
+
+훈련 및 평가 : 교차검증, R^2 (비율척도 관측치와 예측치의 상관도), RMSE
+
+## 참고 사이트
+http://sdaulton.github.io/TaxiPrediction/
+
