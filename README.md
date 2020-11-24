@@ -1,4 +1,17 @@
 
+# 웹 자동 조회 - 2020
+## 목적
+반복 작업 자동화
+
+
+## 시스템 구조
+selenium : 웹 드라이버 구동, 크롬 드라이버 사용
+BeautifulSoup : HTML parsing
+
+## 위치
+MachineLearingTips/web_monitor.py
+
+
 # Machine Leaerning Service Deployment - REST API - 2020
 ## 목적
 머신러닝 모델을 REST API로 서비스 한다.
