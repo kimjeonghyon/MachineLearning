@@ -66,6 +66,8 @@ aws + caffe, python, pyCaffe
 ## 참고 사이트
 https://github.com/rodrigonogueira4/BusData
 
+## 위치
+OutlierDetectionInBusRoute
 
 
 
