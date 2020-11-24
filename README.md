@@ -11,9 +11,8 @@ gunicorn - 웹 컨테이너
 예시 모델 : 데이콘 퇴근시간 버스승차인원 예측 모델 경진대회 코드 참조
 (https://dacon.io/competitions/official/229255/codeshare/709?page=1&dtype=recent&ptype=pub)
 
-## To Do 
-- R model deploy in Flask
-- docker
+## 위치
+ml_api
 
 # Prediction Sales Count of Store (가게 매출 예측) - 2019
 ## 목적
