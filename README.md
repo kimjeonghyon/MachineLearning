@@ -1,14 +1,65 @@
 
-# 웹 자동 조회 - 2020
+# Apple ML Compute Tensorflow 2.4 Performance Test - 2020
 ## 목적
-반복 작업 자동화
+OS Big Sur와 XCode 12를 설치하면
+Mac에서 GPU로 딥러닝을 할 수 있게 되었다. 
+과연, 성능은 어느 정도 일까?
+
+## mbp 2019 16 inch vs nvidia gtx 1660 super vs google colab gpu
+
+
+### Macbook 2019 16 inch 
+2.6GHz 6코어 Intel Core i7(최대 4.5GHz Turbo Boost, 12MB 공유 L3 캐시)
+16GB 2666MHz DDR4 온보드 메모리
+AMD Radeon Pro 5300M
+
+### Windows PC 
+Intel 2코어 Pentium G5400 (3.70 GHz, 4 MB Intel® Smart Cache)ㅁ
+16GB 2666MHz DDR4 메모리
+MSI GTX 1660 SUPER 게이밍 X D6 6GB 트윈프로져7 FB
+
+
+### Google Colab GPU 
+Intel 2코어 Pentium G5400 (3.70 GHz, 4 MB Intel® Smart Cache)ㅁ
+16GB 2666MHz DDR4 메모리
+MSI GTX 1660 SUPER 게이밍 X D6 6GB 트윈프로져7 FB
+
+
+## 소스 
+MachineLearingTips/CNN_BM.ipynb
+
+MNIST 분류 성능 실험
+CNN 신경망 모델 사용
+
+## 실험 결과
+MachineLearingTips/gpu_bm_test
+
+mbp 16 inch (2019) : 29 seconds / epoch
+gtx 1660 super : 3 seconds / epoch
+colab gpu : 3 seconds / epoch
+
+맥북 프로의 GPU인 라데온 프로 5300M의 성능은 
+딥러닝을 하기에는 많이 부족한 모습을 보여주었다. 
+
+
+# 웹 화면 조회 봇- 2020
+## 목적
+
+다음 작업 자동화 
+
+웹브라우저로 특정 웹사이트에 접속
+아이디, 패스워드 입력
+화면 메뉴 클릭
+조회 조건 입력
+검색 버튼 클릭
+웹 브라우저 종료
 
 
 ## 시스템 구조
 selenium : 웹 드라이버 구동, 크롬 드라이버 사용
 BeautifulSoup : HTML parsing
 
-## 위치
+## 소스 
 MachineLearingTips/web_monitor.py
 
 
