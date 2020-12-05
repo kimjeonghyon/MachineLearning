@@ -28,17 +28,24 @@ MSI GTX 1660 SUPER 게이밍 X D6 6GB 트윈프로져7 FB
 ## 소스 
 MachineLearingTips/CNN_BM.ipynb
 
+
 MNIST 분류 성능 실험
+
 CNN 신경망 모델 사용
 
 ## 실험 결과
 MachineLearingTips/gpu_bm_test
 
+
 mbp 16 inch (2019) : 29 seconds / epoch
+
 gtx 1660 super : 3 seconds / epoch
+
 colab gpu : 3 seconds / epoch
 
+
 맥북 프로의 GPU인 라데온 프로 5300M의 성능은 
+
 딥러닝을 하기에는 많이 부족한 모습을 보여주었다. 
 
 
