@@ -1,3 +1,16 @@
+# Corona 19 virus map- 2020
+## 목적
+세계지도위에 2020년 한해동안 코로나 바이러스가 퍼져가는 모습을 
+시각화 하였다. 
+
+## 구현
+D3.js
+
+## 소스 
+MachineLearingTips/corona
+
+## 시각화 결과
+https://kimjeonghyon.github.io/corona/index.html
 
 # Apple ML Compute Tensorflow 2.4 Performance Test - 2020
 ## 목적
