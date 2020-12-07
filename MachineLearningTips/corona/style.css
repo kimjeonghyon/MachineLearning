@@ -1,0 +1,29 @@
+.country-label{
+    visibility: hidden;
+}
+
+.country-label:hover {
+    visibility: visible;
+  }
+
+h1{
+      text-align:center;
+      font-size:180%;
+      font-weight:400;
+  }
+h4{
+    text-align: right;
+    color:gray;
+    position: relative;
+    right: 20%;
+    font-weight:100;
+    margin-top:0px;
+}
+
+body > svg{
+    margin-left : 120px;
+    margin-right : 120px;
+    width : 1200px;
+    height: 690px;
+}
+

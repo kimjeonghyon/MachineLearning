@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://unpkg.com/topojson-client@3"></script>
+        <script src="https://d3js.org/queue.v1.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>World corona 19 dashboard  <span id="date"></span></h1>
+        <script>
+        var width = 1024, height = 800;
+        var svg = d3.select("body").append("svg").attr("width", width).attr("height", height).attr("class", "map");
+        
+        var projection = d3.geoMercator().translate([width / 1.9, height / 1.5]);
+        var path = d3.geoPath().projection(projection);
+        var g = svg.append("g");
+        var popById = d3.map();
+        var covid = d3.map();
+        var features = null;
+
+        var newDate = new Date("2020-01-22T00:00:00");
+        var newDateString = null;
+        var size = null;
+        
+        queue()
+            .defer(d3.json, "https://unpkg.com/world-atlas@1/world/110m.json" )
+            .defer(d3.csv, "data/accumulated_covid_19_data.csv")
+            .defer(d3.csv, "data/world_country_id.csv", function(row){
+                popById.set(row.id, row.name);
+            })
+            .await(ready);
+        
+        function ready(error, geoData, covidData){
+
+                covidData.map(function(row){
+                var date = row.ObservationDate;
+
+                if (covid.has(date)){
+                    covid.get(date).push({country : row["Country.Region"], confirmed : row.Confirmed});
+                }else{
+                    covid.set(date, [{country : row["Country.Region"], confirmed : row.Confirmed}]);
+                }
+                });
+
+            features = topojson.feature(geoData, geoData.objects.countries).features;
+        
+            // add country name using country code
+            features.forEach(function(d){
+                var countryName = popById.get(d.id);
+                if (countryName) d.properties.name = countryName;
+            
+            })
+        
+            svg.selectAll("path")
+                .data(features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("stroke", "white")
+                .attr("stroke-width", 0.8)
+                .attr("fill", "#202020DE");
+                
+            
+            svg.selectAll("text")
+                .data(features)
+                .enter()
+                .append("text")
+                .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+                .attr("dy", ".35em")
+                .attr("class", "country-label")
+                .text(function(d) { return d.properties.name});
+
+                svg.append("path");
+                var values = covidData.map(function(d){return d.Confirmed});
+
+            var valueExtent = d3.extent(values);
+
+            size = d3.scaleSqrt()
+                    .domain(valueExtent)
+                    .range([ 1, 28]);
+
+            var valuesToShow = [10000,100000,1000000]
+            var xCircle = 200
+            var xLabel = 320
+
+            svg
+                .selectAll("legend")
+                .data(valuesToShow)
+                .enter()
+                .append("circle")
+                .attr("cx", xCircle)
+                .attr("cy", function(d){ return height - size(d) - 50 } )
+                .attr("r", function(d){ return size(d) })
+                .style("fill", "none")
+                .attr("stroke", "black")
+
+            // Add legend: segments
+            svg
+                .selectAll("legend")
+                .data(valuesToShow)
+                .enter()
+                .append("line")
+                .attr('x1', function(d){ return xCircle + size(d) } )
+                .attr('x2', xLabel)
+                .attr('y1', function(d){ return height - size(d) - 50 } )
+                .attr('y2', function(d){ return height - size(d) - 50} )
+                .attr('stroke', 'black')
+                .style('stroke-dasharray', ('2,2'))
+
+            // Add legend: labels
+            svg
+                .selectAll("legend")
+                .data(valuesToShow)
+                .enter()
+                .append("text")
+                .attr('x', xLabel)
+                .attr('y', function(d){ return height - size(d) - 50 } )
+                .text( function(d){ return d } )
+                .style("font-size", 14)
+                .attr('alignment-baseline', 'middle')
+
+            redraw();
+
+            setInterval(redraw, 500);
+        
+        }
+
+            var pullData = function(callback){
+            newDateString = ("0"+(newDate.getMonth()+1)).slice(-2)+"/"+("0"+newDate.getDate()).slice(-2)+"/"+newDate.getFullYear();
+            var result = covid.get(newDateString);
+            if(result){
+                var curData = [];
+                features.map(function(d){
+                    var curConfirmed = result.find(x => x.country == d.properties.name);
+                    if(curConfirmed){
+                        d.properties.confirmed = curConfirmed.confirmed;
+                        curData.push(d);
+                    }
+                });
+                date.innerText = newDateString;
+                }else{
+                    clearInterval(redraw);
+                    return;
+                }
+
+
+            newDate.setDate(newDate.getDate() + 1);
+            callback(curData);
+            }
+
+            var redraw = function(settings){
+                pullData(redrawChart);  
+            }
+
+            var redrawChart = function(curData){
+                //add circles
+                svg.selectAll("circles")
+                .data(curData)
+                    .enter()
+                    .append("circle")
+                    .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+                    .attr("r", function(d) { return size(+d.properties.confirmed)})
+                    .attr("fill", "#EC332020");
+            }
+            
+</script>
+<h4>data from <a href="https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset">kaggle.com</a></h4>
+</body>
+</html>
